@@ -1,0 +1,20 @@
+# https://codeforces.com/contest/2090/problem/C
+import sys
+
+sys.stdin = open("R1040A_inputA.txt", "r")
+
+
+        
+
+def submiss():
+    # Input
+    n = int(input())
+    t = list(map(int, input().split()))
+    # A 0 alone in the set gives 1 through mex (only way to use it to increase the score). A 0 and a 1 would increase the score by 2 with mex.
+    # We change every 0 by 1 and use only the sum 
+    t_bis = [x if x != 0 else 1 for x in t ]
+    print(sum(t_bis))
+    
+q = int(input())  # Test cases
+for _ in range(q):
+    submiss()

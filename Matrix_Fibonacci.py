@@ -1,5 +1,5 @@
 # https://www.codewars.com/kata/53d40c1e2f13e331fc000c26
-""" The year is 1214. One night, Pope Innocent III awakens to find the the archangel Gabriel floating before him. Gabriel thunders to the pope:
+"""The year is 1214. One night, Pope Innocent III awakens to find the the archangel Gabriel floating before him. Gabriel thunders to the pope:
 
     Gather all of the learned men in Pisa, especially Leonardo Fibonacci. In order for the crusades in the holy lands to be successful, these men must calculate the millionth number in Fibonacci's recurrence. Fail to do this, and your armies will never reclaim the holy land. It is His will.
 
@@ -21,33 +21,44 @@ fib(n + 2) := fib(n + 1) + fib(n)
 
 Write an algorithm that can handle n up to 2000000.
 
-Your algorithm must output the exact integer answer, to full precision. Also, it must correctly handle negative numbers as input. """
+Your algorithm must output the exact integer answer, to full precision. Also, it must correctly handle negative numbers as input.
+"""
 
 
 import numpy as np
-from numpy.linalg import matrix_power 
+from numpy.linalg import matrix_power
+
 
 def old_Fib(n):
     """Calculates the nth Fibonacci number"""
-    if n==0: return 0
-    if n==1: return 1
-    if n<0: return old_Fib(n+2)-old_Fib(n+1)
-    if n>1: return old_Fib(n-1)+old_Fib(n-2) 
-    
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    if n < 0:
+        return old_Fib(n + 2) - old_Fib(n + 1)
+    if n > 1:
+        return old_Fib(n - 1) + old_Fib(n - 2)
+
+
 def M_Fib(n):
-    if n==0: return 0
-    if n==1: return 1
-    if n==-1: return 1
-    matrix_pos=[[0,1],[1,1]]
-    if n<0:
-        m_pn=np.matrix(matrix_pos, dtype=object)**abs(n)
-        if abs(n)%2==0:
-            return -m_pn[0,1] 
-        else: 
-            return m_pn[0,1]
-    if n>1: 
-        m_pn=np.matrix(matrix_pos, dtype=object)**abs(n)
-        return m_pn[0,1]  
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    if n == -1:
+        return 1
+    matrix_pos = [[0, 1], [1, 1]]
+    if n < 0:
+        m_pn = np.matrix(matrix_pos, dtype=object) ** abs(n)
+        if abs(n) % 2 == 0:
+            return -m_pn[0, 1]
+        else:
+            return m_pn[0, 1]
+    if n > 1:
+        m_pn = np.matrix(matrix_pos, dtype=object) ** abs(n)
+        return m_pn[0, 1]
+
 
 print(M_Fib(2))
 print(M_Fib(3))
@@ -55,4 +66,3 @@ print(M_Fib(4))
 print(M_Fib(-96))
 print(M_Fib(-97))
 print(M_Fib(1000))
-
